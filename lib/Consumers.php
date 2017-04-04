@@ -71,4 +71,3 @@ class Consumers_BlockingHttpConsumer extends Consumers_AbstractConsumer
         curl_close($ch);
     }
 }
-
