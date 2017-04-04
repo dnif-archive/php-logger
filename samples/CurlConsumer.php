@@ -1,5 +1,6 @@
 <?php
 
+// import the DnifLogger and Consumers_BlockingHttpConsumer classes
 require_once("../lib/Consumers.php");
 require_once("../lib/DnifLogger.php");
 
@@ -11,4 +12,5 @@ $data = array(
     array("key1" => "value1")
 );
 
+// Warning: This will block until the request is complete
 $dlog->log($data);
