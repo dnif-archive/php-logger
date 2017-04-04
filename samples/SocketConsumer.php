@@ -5,7 +5,7 @@ require_once("../lib/Consumers.php");
 require_once("../lib/DnifLogger.php");
 
 $dlog = new DnifLogger(
-    new Consumers_SocketConsumer("202.87.34.253", 9234));
+    new Consumers_SocketConsumer("UDP_IP", UDP_PORT));
 
 // data is a string
 $data = "Hello World";

@@ -5,7 +5,7 @@ require_once("../lib/Consumers.php");
 require_once("../lib/DnifLogger.php");
 
 $dlog = new DnifLogger(
-    new Consumers_BlockingHttpConsumer("http://202.87.34.253:9234/json/receive"));
+    new Consumers_BlockingHttpConsumer("http://TARGET_IP:PORT/json/receive"));
 
 // data is a *sequential array* of key value pairs
 $data = array(
