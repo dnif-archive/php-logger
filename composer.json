@@ -1,0 +1,25 @@
+{
+  "name": "dnif/php-logger",
+  "description": "The Official PHP library for DNIF",
+  "keywords": [
+    "dnif",
+    "dnif php"
+  ],
+  "homepage": "https://dnif.it/",
+  "license": "Apache",
+  "authors": [
+    {
+      "name": "Bhumil Haria <bhumilharia@gmail.com>",
+      "homepage": "https://bhumilharia.com/"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "files": [
+      "lib/Consumers.php",
+      "lib/DnifLogger.php"
+    ]
+  }
+}
