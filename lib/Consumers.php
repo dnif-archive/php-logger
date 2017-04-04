@@ -71,3 +71,58 @@ class Consumers_BlockingHttpConsumer extends Consumers_AbstractConsumer
         curl_close($ch);
     }
 }
+
+
+/**
+ * Class Consumers_SocketConsumer
+ * Takes the provided data and sends it over to the specified HTTP endpoint.
+ * This implementation is blocking.
+ */
+class Consumers_SocketConsumer extends Consumers_AbstractConsumer
+{
+    private $ip;
+    private $port;
+    private $socket;
+
+    /**
+     * Consumers_SocketConsumer constructor.
+     * @param $ip string: the IPv4 address of Adapter
+     * @param $port string: the port to connect to
+     * @param array $options additional options
+     * @throws Exception
+     * @internal param string $url the URL to send to
+     */
+    public function __construct($ip, $port, $options = array())
+    {
+        $this->ip = $ip;
+        $this->port = $port;
+        $this->socket = socket_create(AF_INET, SOCK_DGRAM, 0);
+
+        if (!$this->socket) {
+            $error_code = socket_last_error();
+            $error_msg = socket_strerror($error_code);
+            throw new Exception("Could not create socket: [$error_code] $error_msg \n");
+        }
+
+        return;
+    }
+
+    /**
+     * @param $data string message to send
+     */
+    public function send($data)
+    {
+        if (!is_string($data)) {
+            return;
+        }
+
+        $result = socket_sendto($this->socket, $data, strlen($data), 0, $this->ip, $this->port);
+        if(!$result)
+        {
+            $error_code = socket_last_error();
+            $error_msg = socket_strerror($error_code);
+            error_log("Could not send data: [$error_code] $error_msg \n");
+        }
+
+    }
+}
